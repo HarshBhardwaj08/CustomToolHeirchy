@@ -1,0 +1,18 @@
+{
+  "name": "com.custom.herichy",
+  "version": "1.0.0",
+  "displayName": "dronnzercustomheircytool",
+  "description": "A custom Unity Editor tool designed to enhance the workflow for developers.",
+  "unity": "2021.1",
+  "author": {
+    "name": "Harsh Bhardwaj",
+    "email": "harshbhardwaj882536@gmail.com",
+    "url": "https://github.com/HarshBhardwaj08"
+  },
+  "keywords": [
+    "editor",
+    "tool",
+    "unity",
+    "custom-tool"
+  ]
+}
