@@ -31,7 +31,8 @@ public class ProjectOrganizer : EditorWindow
     {
         {"Prefabs" , new List<string>() {".prefab"} },
         {"Animations" , new List<string>() {".anim"} },
-        {"Images" , new List<string>(){".png",".jpeg"}}
+        {"Images" , new List<string>(){".png",".jpeg"}},
+        {"Music" , new List<string>(){".mp3",".wav"} }
     };
     private void Awake()
     {
@@ -224,57 +225,64 @@ public class ProjectOrganizer : EditorWindow
 
     void DrawAddAndRemoveControls()
     {
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        GUIContent add = new GUIContent();
-        add.text = "+";
-        if(GUILayout.Button(add))
+        
+        if (selectedTabIndex == 0)
         {
-            if(selectedTabIndex == 0)
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            GUIContent add = new GUIContent();
+            add.text = "+";
+
+            if (GUILayout.Button(add))
             {
                 countOrganizerRow++;
                 oraganizerRows.Add(new OraganizerRow());
             }
-            else
-            {
-                countOFAssetTypeRows++;
-                assetTypeRows.Add(new AssetTypeRow());
-            }
-        }
-        GUIContent remove = new GUIContent();
-        remove.text = "-";
-        if (GUILayout.Button(remove))
-        {
-            if (selectedTabIndex == 0)
+
+            GUIContent remove = new GUIContent();
+             remove.text = "-";
+
+            if (GUILayout.Button(remove))
             {
                 countOrganizerRow--;
                 oraganizerRows.Remove(new OraganizerRow());
             }
-            else
-            {
-                countOFAssetTypeRows--;
-                assetTypeRows.Remove(new AssetTypeRow());
-            }
+          GUILayout.EndHorizontal();
+        }else
+        {
+            EditorGUILayout.LabelField("If you want to add the extension u can add through code .");
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Open the ProjectOrganizer.cs go the assetTypes Dictionary and add the extension");
+            EditorGUILayout.LabelField("Imp * In First Parameter of Dictoinary add the FileType - " + "Example('Music')");
+            EditorGUILayout.LabelField("Imp * In Second Parameter of Dictoinary add the ExtensionType - " + "Example('.mp3')");
+
+
         }
-        GUILayout.EndHorizontal();
+
     }
     private void OrganizeFolder()
     {
         Dictionary<string,string> filesExtensionToFolderPathMap = new Dictionary<string,string>();
         foreach(string assetTypeName in assetTypes.Keys)
         {
-            for(int i = 0; i < assetTypes[assetTypeName].Count; i++)
+            string pathToPrefabsFolder = "Assets/" + assetTypeName;
+            bool doesPrefabsFolderExist = AssetDatabase.IsValidFolder(pathToPrefabsFolder);
+            if (!doesPrefabsFolderExist)
+            {
+                AssetDatabase.CreateFolder("Assets", assetTypeName);
+            }
+            for (int i = 0; i < assetTypes[assetTypeName].Count; i++)
             {
                 string folderPath = "Assets/" + assetTypeName + "/";
                 filesExtensionToFolderPathMap.Add(assetTypes[assetTypeName][i], folderPath);
