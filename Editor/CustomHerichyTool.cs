@@ -1,3 +1,10 @@
+/*
+	Created by @HarshBhardwaj follow at github https://github.com/HarshBhardwaj08
+	Thanks so much for checking this out and I hope you find it helpful! 
+	If you have any further queries, questions or feedback feel free to reach out on my email - harshbhardwaj882536@gmail.com
+
+	Feel free to use this in your own games, and I'd love to see anything you make!
+ */
 using Custom.Herichy;
 using System;
 using UnityEditor;
