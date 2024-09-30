@@ -38,8 +38,11 @@ public class ProjectOrganizer : EditorWindow
     {
         {"Prefabs" , new List<string>() {".prefab"} },
         {"Animations" , new List<string>() {".anim"} },
-        {"Images" , new List<string>(){".png",".jpeg"}},
-        {"Music" , new List<string>(){".mp3",".wav"} }
+        {"Textures" , new List<string>(){".jpeg"} },
+        {"Music" , new List<string>(){".mp3",".wav"} },
+        {"Model" , new List<string>(){".fbx"} },
+        {"Images" , new List<string>(){ ".png"} }
+
     };
     private void Awake()
     {
